@@ -11,7 +11,7 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
@@ -409,64 +409,49 @@
                 <!-- This media type is necessary, otherwise it won't match on the file extension -->
                 <data android:mimeType="*/*" />
                 <!--TXT-->
-                <data android:pathAdvancedPattern=".*\\.[tT][xX][tT]" />
                 <data android:pathPattern=".*\\.txt" />
                 <data android:pathPattern=".*\\.TXT" />
                 <!--JSON-->
-                <data android:pathAdvancedPattern=".*\\.[jJ][sS][oO][nN]" />
                 <data android:pathPattern=".*\\.json" />
                 <data android:pathPattern=".*\\.JSON" />
                 <!-- EPUB -->
-                <data android:pathAdvancedPattern=".*\\.[eE][pP][uU][bB]" />
                 <data android:pathPattern=".*\\.epub" />
                 <data android:pathPattern=".*\\.EPUB" />
                 <!-- pdf -->
-                <data android:pathAdvancedPattern=".*\\.[pP][dD][fF]" />
                 <data android:pathPattern=".*\\.pdf" />
                 <data android:pathPattern=".*\\.PDF" />
                 <!-- mobi -->
-                <data android:pathAdvancedPattern=".*\\.[mM][oO][bB][iI]" />
                 <data android:pathPattern=".*\\.mobi" />
                 <data android:pathPattern=".*\\.MOBI" />
                 <!-- azw -->
-                <data android:pathAdvancedPattern=".*\\.[aA][zZ][wW]" />
                 <data android:pathPattern=".*\\.azw" />
                 <data android:pathPattern=".*\\.AZW" />
                 <!-- azw3 -->
-                <data android:pathAdvancedPattern=".*\\.[aA][zZ][wW]3" />
                 <data android:pathPattern=".*\\.azw3" />
                 <data android:pathPattern=".*\\.AZW3" />
                 <!-- zip -->
-                <data android:pathAdvancedPattern=".*\\.[zZ][iI][pP]" />
                 <data android:pathPattern=".*\\.zip" />
                 <data android:pathPattern=".*\\.ZIP" />
                 <!-- rar -->
-                <data android:pathAdvancedPattern=".*\\.[rR][aA][rR]" />
                 <data android:pathPattern=".*\\.rar" />
                 <data android:pathPattern=".*\\.RAR" />
                 <!-- 7z -->
-                <data android:pathAdvancedPattern=".*\\.7[zZ]" />
                 <data android:pathPattern=".*\\.7z" />
                 <data android:pathPattern=".*\\.7Z" />
             </intent-filter>
         </activity>
 
         <service
-            android:name=".service.CheckSourceService"
-            android:foregroundServiceType="dataSync" />
+            android:name=".service.CheckSourceService" />
         <service
-            android:name=".service.CacheBookService"
-            android:foregroundServiceType="dataSync" />
+            android:name=".service.CacheBookService" />
         <service
-            android:name=".service.ExportBookService"
-            android:foregroundServiceType="dataSync" />
+            android:name=".service.ExportBookService" />
         <service
-            android:name=".service.WebService"
-            android:foregroundServiceType="dataSync" />
+            android:name=".service.WebService" />
         <service
             android:name=".service.WebTileService"
             android:exported="true"
-            android:foregroundServiceType="dataSync"
             android:icon="@drawable/ic_web_service_noti"
             android:label="legado Web Service"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
@@ -476,17 +461,13 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.TTSReadAloudService"
-            android:foregroundServiceType="mediaPlayback" />
+            android:name=".service.TTSReadAloudService" />
         <service
-            android:name=".service.HttpReadAloudService"
-            android:foregroundServiceType="mediaPlayback" />
+            android:name=".service.HttpReadAloudService" />
         <service
-            android:name=".service.AudioPlayService"
-            android:foregroundServiceType="mediaPlayback" />
+            android:name=".service.AudioPlayService" />
         <service
-            android:name=".service.DownloadService"
-            android:foregroundServiceType="dataSync" />
+            android:name=".service.DownloadService" />
 
         <receiver
             android:name=".receiver.MediaButtonReceiver"

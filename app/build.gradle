@@ -9,9 +9,9 @@ plugins {
     alias libs.plugins.android.application
     alias libs.plugins.kotlin.android
     alias libs.plugins.kotlin.parcelize
-    alias libs.plugins.room
+    //alias libs.plugins.room
     alias libs.plugins.ksp
-    alias libs.plugins.google.services
+    //alias libs.plugins.google.services
 }
 apply from: 'download.gradle'
 
@@ -26,12 +26,8 @@ def gitCommits = Integer.parseInt('git rev-list HEAD --count'.execute().text.tri
 android {
     compileSdk = compile_sdk_version
     namespace 'io.legado.app'
-    kotlin {
-        jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
-
+    // Remove jvmToolchain as it's not available in AGP 4.2.2
+    
     signingConfigs {
         if (project.hasProperty("RELEASE_STORE_FILE")) {
             myConfig {
@@ -48,7 +44,7 @@ android {
     }
     defaultConfig {
         applicationId "io.legado.app"
-        minSdk 21
+        minSdk 19
         targetSdk 36
         versionCode 10000 + gitCommits
         versionName version
@@ -58,15 +54,15 @@ android {
         buildConfigField "String", "Cronet_Version", "\"$CronetVersion\""
         buildConfigField "String", "Cronet_Main_Version", "\"$CronetMainVersion\""
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments += [
-                        "room.incremental"     : "true",
-                        "room.expandProjection": "true",
-                        "room.schemaLocation"  : "$projectDir/schemas".toString()
-                ]
-            }
-        }
+        //javaCompileOptions {
+        //    annotationProcessorOptions {
+        //        arguments += [
+        //                "room.incremental"     : "true",
+        //                "room.expandProjection": "true",
+        //                "room.schemaLocation"  : "$projectDir/schemas".toString()
+        //        ]
+        //    }
+        //}
     }
     buildFeatures {
         buildConfig true
@@ -101,7 +97,7 @@ android {
         }
     }
     //noinspection GrDeprecatedAPIUsage
-    flavorDimensions = ['mode']
+    flavorDimensions "mode"
     productFlavors {
         app {
             dimension "mode"
@@ -117,24 +113,24 @@ android {
     }
 
 
-    room {
-        schemaDirectory "$projectDir/schemas"
-    }
+    //room {
+    //    schemaDirectory "$projectDir/schemas"
+    //}
     // 设定Room的KSP参数
-    ksp {
-        arg("room.incremental", "true")
-        arg("room.expandProjection", "true")
-        arg("room.generateKotlin", "false")
-        //arg("room.schemaLocation", "$projectDir/schemas")
-
-    }
+    //ksp {
+    //    arg("room.incremental", "true")
+    //    arg("room.expandProjection", "true")
+    //    arg("room.generateKotlin", "false")
+    //    //arg("room.schemaLocation", "$projectDir/schemas")
+    //
+    //}
 
     compileOptions {
         // Flag to enable support for the new language APIs
         coreLibraryDesugaringEnabled true
         // Sets Java compatibility
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     packaging {
         resources.excludes.add('META-INF/*')
@@ -213,11 +209,11 @@ dependencies {
     implementation(libs.splitties.views)
 
     //room sql语句不高亮解决方法https://issuetracker.google.com/issues/234612964#comment6
-    implementation(libs.room.runtime)
-    implementation(libs.room.ktx)
+    //implementation(libs.room.runtime)
+    //implementation(libs.room.ktx)
     //kapt("androidx.room:room-compiler:$room_version")
-    ksp(libs.room.compiler)
-    androidTestImplementation(libs.room.testing)
+    //ksp(libs.room.compiler)
+    //androidTestImplementation(libs.room.testing)
 
     //liveEventBus
     implementation(libs.liveeventbus)
@@ -277,9 +273,9 @@ dependencies {
     implementation(libs.hutool.crypto)
 
     //firebase, 崩溃统计和性能统计
-    implementation platform(libs.firebase.bom)
-    implementation libs.firebase.analytics
-    implementation libs.firebase.perf
+    //implementation platform(libs.firebase.bom)
+    //implementation libs.firebase.analytics
+    //implementation libs.firebase.perf
 
     implementation libs.glide.recyclerview
 

@@ -1,32 +1,32 @@
 [versions]
 
-kotlin = "2.3.0"
-ksp = "2.3.4"
-agp = "8.13.2"
-appcompat = "1.7.1"
+kotlin = "1.6.10"
+ksp = "1.6.10-1.0.4"
+agp = "4.2.2"
+appcompat = "1.6.1"
 colorpicker = "1.1.0"
-constraintlayout = "2.2.1"
-core = "1.17.0"
-flexbox = "3.0.0"
-fragment = "1.8.9"
+constraintlayout = "2.1.4"
+core = "1.6.0"
+flexbox = "2.0.1"
+fragment = "1.6.2"
 
 libarchive = "1.1.6"
-glide = "5.0.5"
+glide = "4.15.1"
 gson = "2.13.2"
 jsonPath = "2.10.0"
 jsoupxpath = "2.5.3"
-coroutines = "1.10.2"
+coroutines = "1.6.4"
 liveeventbus = "1.8.14"
 markwon = "4.6.2"
-material = "1.13.0"
-media = "1.7.1"
+material = "1.5.0"
+media = "1.6.0"
 nanoHttpd = "2.3.1"
-okhttp = "5.3.2"
-preference = "1.2.1"
+okhttp = "4.12.0"
+preference = "1.2.0"
 quickChineseTransfer = "0.2.16"
 
-splitties = "3.0.0"
-desugar = "2.1.5"
+splitties = "2.12.0"
+desugar = "2.0.4"
 
 #kotlinxSerialization = "1.8.0"
 swiperefreshlayout = "1.2.0"
@@ -46,31 +46,31 @@ protobufJavalite = "4.26.1"
 #noinspection NewerVersionAvailable
 jsoup = "1.16.2"
 
-# 新版本使用了 Android 6 以下缺少的 Arrays.setAll 方法，导致进入阅读界面会崩溃
+# 降级到Android 4.4兼容版本
 #noinspection GradleDependency,NewerVersionAvailable
-commonsText = "1.13.1"
+commonsText = "1.10.0"
 
-# 新版本使用了 Android 8 以下无法编译的 VarHandle.compareAndExchange 方法
+# 降级到Android 4.4兼容版本
 #noinspection GradleDependency
-rhino = "1.8.1"
+rhino = "1.7.14"
 
 #noinspection GradleDependency,NewerVersionAvailable
-media3 = "1.8.0"
+media3 = "1.2.0"
 
 #noinspection GradleDependency
-webkit = "1.14.0"
+webkit = "1.4.0"
 #noinspection GradleDependency
-activity = "1.11.0"
+activity = "1.5.1"
 #noinspection GradleDependency
-lifecycle = "2.9.4"
+lifecycle = "2.6.2"
 #noinspection GradleDependency
-room = "2.7.1"
+room = "2.4.3"
 #noinspection GradleDependency
 recyclerview = "1.2.0"
 #noinspection GradleDependency
 viewpager2 = "1.0.0"
 #noinspection GradleDependency
-firebaseBom = "33.2.0"
+firebaseBom = "32.7.4"
 
 [libraries]
 

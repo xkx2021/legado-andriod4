@@ -8,21 +8,18 @@ plugins {
 android {
     compileSdk = compile_sdk_version
     namespace 'com.script'
-    kotlin {
-        jvmToolchain {
-            languageVersion.set(JavaLanguageVersion.of(17))
-        }
-    }
+    // Remove jvmToolchain as it's not available in AGP 4.2.2
+    
     defaultConfig {
-        minSdk 21
+        minSdk 19
         targetSdk 36
 
         consumerProguardFiles "consumer-rules.pro"
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     lint {
         checkDependencies true
