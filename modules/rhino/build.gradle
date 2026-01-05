@@ -1,14 +1,11 @@
 plugins {
-    //d 'com.android.library'
-    //id 'org.jetbrains.kotlin.android'
-    alias libs.plugins.android.library
-    alias libs.plugins.kotlin.android
+    id 'com.android.library' version '4.2.2'
+    id 'org.jetbrains.kotlin.android' version '1.6.10'
 }
 
 android {
-    compileSdk = compile_sdk_version
+    compileSdk = 36
     namespace 'com.script'
-    // Remove jvmToolchain as it's not available in AGP 4.2.2
     
     defaultConfig {
         minSdk 19
@@ -32,13 +29,9 @@ android {
 }
 
 dependencies {
-//    api(fileTree(dir: 'lib', include: ['rhino-1.7.14.jar']))
-    api libs.mozilla.rhino
+    api 'org.mozilla:rhino:1.7.14'
 
-    implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.okhttp)
-    implementation(libs.androidx.collection)
-
-//    def coroutines_version = '1.7.3'
-//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'androidx.collection:collection:1.5.0'
 }

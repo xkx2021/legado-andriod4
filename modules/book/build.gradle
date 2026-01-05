@@ -1,12 +1,11 @@
 plugins {
-    alias libs.plugins.android.library
-    alias libs.plugins.kotlin.android
+    id 'com.android.library' version '4.2.2'
+    id 'org.jetbrains.kotlin.android' version '1.6.10'
 }
 
 android {
-    compileSdk = compile_sdk_version
+    compileSdk = 36
     namespace 'me.ag2s'
-    // Remove jvmToolchain as it's not available in AGP 4.2.2
     
     defaultConfig {
         minSdk 19
@@ -26,6 +25,5 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.annotation)
-    //implementation 'androidx.annotation:annotation:1.7.1'
+    implementation 'androidx.annotation:annotation:1.9.1'
 }
