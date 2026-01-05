@@ -4,12 +4,11 @@ plugins {
 }
 
 android {
-    compileSdk = 36
-    namespace 'me.ag2s'
+    compileSdkVersion 36
     
     defaultConfig {
-        minSdk 19
-        targetSdk 36
+        minSdkVersion 19
+        targetSdkVersion 36
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -19,7 +18,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    lint {
+    
+    lintOptions {
         checkDependencies true
     }
 }

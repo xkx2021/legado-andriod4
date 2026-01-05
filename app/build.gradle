@@ -15,8 +15,7 @@ def version = "3." + releaseTime()
 def gitCommits = Integer.parseInt('git rev-list HEAD --count'.execute().text.trim())
 
 android {
-    compileSdk = 36
-    namespace 'io.legado.app'
+    compileSdkVersion 36
     
     signingConfigs {
         if (project.hasProperty("RELEASE_STORE_FILE")) {
@@ -27,19 +26,18 @@ android {
                 keyPassword RELEASE_KEY_PASSWORD
                 v1SigningEnabled true
                 v2SigningEnabled true
-                enableV3Signing = true
-                enableV4Signing = true
             }
         }
     }
     defaultConfig {
         applicationId "io.legado.app"
-        minSdk 19
-        targetSdk 36
+        minSdkVersion 19
+        targetSdkVersion 36
         versionCode 10000 + gitCommits
         versionName version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         project.ext.set("archivesBaseName", name + "_" + version)
+        multiDexEnabled true
 
         buildConfigField "String", "Cronet_Version", "\"$CronetVersion\""
         buildConfigField "String", "Cronet_Main_Version", "\"$CronetMainVersion\""
@@ -84,8 +82,8 @@ android {
         }
     }
 
-    android.applicationVariants.configureEach { variant ->
-        variant.outputs.configureEach {
+    applicationVariants.all { variant ->
+        variant.outputs.all {
             def flavor = variant.productFlavors[0].name
             outputFileName = "${name}_${flavor}_${defaultConfig.versionName}.apk"
         }
@@ -96,20 +94,23 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    packaging {
-        resources.excludes.add('META-INF/*')
-    }
 
     sourceSets {
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
-    lint {
+    
+    aaptOptions {
+        cruncherEnabled false
+    }
+    
+    lintOptions {
         checkDependencies true
     }
 }
 
 dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.4'
+    implementation 'androidx.multidex:multidex:2.0.1'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
     androidTestImplementation 'androidx.test.ext:junit:1.2.1'
