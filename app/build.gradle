@@ -1,17 +1,8 @@
 plugins {
-//    id "com.android.application"
-//    id 'org.jetbrains.kotlin.android'
-//    id 'kotlin-parcelize'
-//    //id 'kotlin-kapt'
-//    id 'com.google.devtools.ksp'
-//    id "com.google.gms.google-services"
-
-    alias libs.plugins.android.application
-    alias libs.plugins.kotlin.android
-    alias libs.plugins.kotlin.parcelize
-    //alias libs.plugins.room
-    alias libs.plugins.ksp
-    //alias libs.plugins.google.services
+    id "com.android.application"
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
 }
 apply from: 'download.gradle'
 
@@ -24,9 +15,8 @@ def version = "3." + releaseTime()
 def gitCommits = Integer.parseInt('git rev-list HEAD --count'.execute().text.trim())
 
 android {
-    compileSdk = compile_sdk_version
+    compileSdk = 36
     namespace 'io.legado.app'
-    // Remove jvmToolchain as it's not available in AGP 4.2.2
     
     signingConfigs {
         if (project.hasProperty("RELEASE_STORE_FILE")) {
@@ -53,16 +43,6 @@ android {
 
         buildConfigField "String", "Cronet_Version", "\"$CronetVersion\""
         buildConfigField "String", "Cronet_Main_Version", "\"$CronetMainVersion\""
-
-        //javaCompileOptions {
-        //    annotationProcessorOptions {
-        //        arguments += [
-        //                "room.incremental"     : "true",
-        //                "room.expandProjection": "true",
-        //                "room.schemaLocation"  : "$projectDir/schemas".toString()
-        //        ]
-        //    }
-        //}
     }
     buildFeatures {
         buildConfig true
@@ -96,7 +76,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'cronet-proguard-rules.pro'
         }
     }
-    //noinspection GrDeprecatedAPIUsage
     flavorDimensions "mode"
     productFlavors {
         app {
@@ -112,23 +91,8 @@ android {
         }
     }
 
-
-    //room {
-    //    schemaDirectory "$projectDir/schemas"
-    //}
-    // 设定Room的KSP参数
-    //ksp {
-    //    arg("room.incremental", "true")
-    //    arg("room.expandProjection", "true")
-    //    arg("room.generateKotlin", "false")
-    //    //arg("room.schemaLocation", "$projectDir/schemas")
-    //
-    //}
-
     compileOptions {
-        // Flag to enable support for the new language APIs
         coreLibraryDesugaringEnabled true
-        // Sets Java compatibility
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -137,151 +101,91 @@ android {
     }
 
     sourceSets {
-        // Adds exported schema location as test app assets.
         androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
     lint {
         checkDependencies true
     }
-    tasks.withType(JavaCompile).tap {
-        configureEach {
-            //options.compilerArgs << "-Xlint:unchecked"
-        }
-    }
 }
 
 dependencies {
-    //compileOnly "com.android.tools.build:gradle:$agp_version"
-    //noinspection GradleDependency,GradlePackageUpdate
-    //coreLibraryDesugaring('com.android.tools:desugar_jdk_libs_nio:2.0.4')
-    coreLibraryDesugaring(libs.desugar)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.bundles.androidTest)
-    //kotlin
-    //noinspection GradleDependency,DifferentStdlibGradleVersion
-    implementation(libs.kotlin.stdlib)
-    //Kotlin反射
-    //noinspection GradleDependency,DifferentStdlibGradleVersion
-    //implementation(libs.kotlin.reflect)
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs_nio:2.0.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
 
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.4'
 
-    //协程
-    //def coroutines_version = '1.7.3'
-    implementation(libs.bundles.coroutines)
+    implementation 'com.github.TomasValenta:renderscript-intrinsics-replacement-toolkit:8eaa829ddd'
 
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.activity:activity-ktx:1.5.1'
+    implementation 'androidx.fragment:fragment-ktx:1.6.2'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0'
+    implementation 'androidx.webkit:webkit:1.4.0'
 
-    //图像处理库Toolkit
-    implementation(libs.renderscript.intrinsics.replacement.toolkit)
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'com.google.android.flexbox:flexbox:2.0.1'
+    implementation 'com.google.code.gson:gson:2.13.2'
 
-    //androidX
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat.appcompat)
-    implementation(libs.activity.ktx)
-    implementation(libs.fragment.ktx)
-    implementation(libs.preference.ktx)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.androidx.swiperefreshlayout)
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.viewpager2)
-    implementation(libs.androidx.webkit)
+    implementation 'androidx.lifecycle:lifecycle-common-java8:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-service:2.6.2'
 
-    //google
-    implementation(libs.material)
-    implementation(libs.flexbox)
-    implementation(libs.gson)
+    implementation 'androidx.media:media:1.6.0'
+    implementation 'androidx.media3:media3-exoplayer:1.2.0'
+    implementation 'androidx.media3:media3-datasource-okhttp:1.2.0'
 
-    //lifecycle
-    implementation(libs.lifecycle.common.java8)
-    implementation(libs.lifecycle.service)
+    implementation 'com.louiscad.splitties:splitties-appctx:2.12.0'
+    implementation 'com.louiscad.splitties:splitties-systemservices:2.12.0'
+    implementation 'com.louiscad.splitties:splitties-views:2.12.0'
 
-    //media
-    implementation(libs.media.media)
-    // For media playback using ExoPlayer
-    implementation(libs.media3.exoplayer)
-    // For loading data using the OkHttp network stack
-    implementation(libs.media3.datasource.okhttp)
-    // For exposing and controlling media sessions
-    //implementation "androidx.media3:media3-session:$media3_version"
+    implementation 'com.github.michaellee123:LiveEventBus:1.8.14'
 
-    //Splitties
-    implementation(libs.splitties.appctx)
-    implementation(libs.splitties.systemservices)
-    implementation(libs.splitties.views)
+    implementation 'org.jsoup:jsoup:1.16.2'
+    implementation 'com.jayway.jsonpath:json-path:2.10.0'
+    implementation 'cn.wanghaomiao:JsoupXpath:2.5.3'
+    implementation project(path: ':modules:book')
+    implementation project(path: ':modules:rhino')
 
-    //room sql语句不高亮解决方法https://issuetracker.google.com/issues/234612964#comment6
-    //implementation(libs.room.runtime)
-    //implementation(libs.room.ktx)
-    //kapt("androidx.room:room-compiler:$room_version")
-    //ksp(libs.room.compiler)
-    //androidTestImplementation(libs.room.testing)
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation fileTree(dir: 'cronetlib', include: ['*.jar', '*.aar'])
+    implementation 'com.google.protobuf:protobuf-javalite:4.26.1'
 
-    //liveEventBus
-    implementation(libs.liveeventbus)
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:4.15.1'
+    implementation 'com.github.bumptech.glide:recyclerview-integration:4.15.1'
+    ksp 'com.github.bumptech.glide:ksp:4.15.1'
 
-    //规则相关
-    implementation(libs.jsoup)
-    implementation(libs.json.path)
-    implementation(libs.jsoupxpath)
-    implementation(project(path: ':modules:book'))
-    implementation(project(path: ':modules:rhino'))
+    implementation 'com.caverock:androidsvg-aar:1.4'
+    implementation 'com.github.qoqa:glide-svg:4.0.2'
 
-    //JS rhino
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+    implementation 'org.nanohttpd:nanohttpd-websocket:2.3.1'
 
-    //网络
-    implementation(libs.okhttp)
-    implementation(fileTree(dir: 'cronetlib', include: ['*.jar', '*.aar']))
-    implementation(libs.protobuf.javalite)
+    implementation 'com.github.jenly1314:zxing-lite:3.3.0'
 
-    //Glide
-    implementation(libs.glide.glide)
-    implementation(libs.glide.okhttp)
-    ksp(libs.glide.ksp)
+    implementation 'com.jaredrummler:colorpicker:1.1.0'
 
-    //Svg
-    implementation(libs.androidsvg)
-    //Glide svg plugin
-    implementation(libs.glide.svg)
+    implementation 'me.zhanghai.android.libarchive:library:1.1.6'
 
-    //webServer
-    implementation(libs.nanohttpd.nanohttpd)
-    implementation(libs.nanohttpd.websocket)
+    implementation 'org.apache.commons:commons-text:1.10.0'
 
-    //二维码
-    //noinspection GradleDependency
-    implementation(libs.zxing.lite)
+    implementation 'io.noties.markwon:core:4.6.2'
+    implementation 'io.noties.markwon:image-glide:4.6.2'
+    implementation 'io.noties.markwon:ext-tables:4.6.2'
+    implementation 'io.noties.markwon:html:4.6.2'
 
-    //颜色选择
-    implementation(libs.colorpicker)
+    implementation 'com.github.liuyueyi.quick-chinese-transfer:quick-transfer-core:0.2.16'
 
-    //压缩解压
-    implementation libs.libarchive
+    implementation 'cn.hutool:hutool-crypto:5.8.22'
 
-    //apache
-    implementation(libs.commons.text)
-
-    //MarkDown
-    implementation(libs.markwon.core)
-    implementation(libs.markwon.image.glide)
-    implementation(libs.markwon.ext.tables)
-    implementation(libs.markwon.html)
-
-    //转换繁体
-    implementation(libs.quick.chinese.transfer.core)
-
-    //加解密类库,有些书源使用
-    //noinspection GradleDependency,GradlePackageUpdate
-    implementation(libs.hutool.crypto)
-
-    //firebase, 崩溃统计和性能统计
-    //implementation platform(libs.firebase.bom)
-    //implementation libs.firebase.analytics
-    //implementation libs.firebase.perf
-
-    implementation libs.glide.recyclerview
-
-    //LeakCanary, 内存泄露检测
-    //debugImplementation('com.squareup.leakcanary:leakcanary-android:2.7')
-
-    //com.github.AmrDeveloper:CodeView代码编辑已集成到应用内
-    //epubLib集成到应用内
+    implementation 'androidx.collection:collection:1.5.0'
 }
