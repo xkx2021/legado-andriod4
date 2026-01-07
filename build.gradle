@@ -11,7 +11,7 @@ plugins {
     id 'com.android.library' version '4.2.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
     id 'org.jetbrains.kotlin.plugin.parcelize' version '1.6.10' apply false
-    id 'com.google.devtools.ksp' version '1.6.10-1.0.4' apply false
+    // Remove KSP plugin, use kapt instead for compatibility with AGP 4.2.2
     id 'de.undercouch.download' version '5.6.0' apply false
 }
 

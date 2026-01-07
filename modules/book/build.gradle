@@ -4,23 +4,23 @@ plugins {
 }
 
 android {
-    compileSdkVersion 36
+    compileSdkVersion = 36
     
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 36
+        minSdkVersion = 19
+        targetSdkVersion = 36
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles = ["consumer-rules.pro"]
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     
     lintOptions {
-        checkDependencies true
+        checkDependencies = true
     }
 }
 
