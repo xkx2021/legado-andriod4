@@ -131,7 +131,8 @@ dependencies {
     implementation 'androidx.webkit:webkit:1.4.0'
 
     implementation 'com.google.android.material:material:1.5.0'
-    implementation 'com.google.android.flexbox:flexbox:2.0.1'
+    // Replace flexbox with ConstraintLayout which is more widely available
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.code.gson:gson:2.13.2'
 
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.6.2'
@@ -141,9 +142,12 @@ dependencies {
     implementation 'androidx.media3:media3-exoplayer:1.2.0'
     implementation 'androidx.media3:media3-datasource-okhttp:1.2.0'
 
-    implementation 'com.louiscad.splitties:splitties-appctx:2.12.0'
-    implementation 'com.louiscad.splitties:splitties-systemservices:2.12.0'
-    implementation 'com.louiscad.splitties:splitties-views:2.12.0'
+    // Replace splitties with AndroidX alternatives
+    implementation 'androidx.core:core-ktx:1.6.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    // implementation 'com.louiscad.splitties:splitties-appctx:2.12.0'
+    // implementation 'com.louiscad.splitties:splitties-systemservices:2.12.0'
+    // implementation 'com.louiscad.splitties:splitties-views:2.12.0'
 
     implementation 'com.github.michaellee123:LiveEventBus:1.8.14'
 

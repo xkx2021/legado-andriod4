@@ -62,6 +62,8 @@ jobs:
           echo "$PREVIEW_LICENSE" > "$PREVIEW_FILE"
           # Install necessary SDK components
           SDKMANAGER="$ANDROID_HOME/cmdline-tools/8.0/bin/sdkmanager"
+          # Accept licenses first
+          yes | $SDKMANAGER --sdk_root=$ANDROID_HOME --licenses || true
           $SDKMANAGER --sdk_root=$ANDROID_HOME \
             "platform-tools" \
             "build-tools;36.0.0" \
@@ -101,11 +103,11 @@ jobs:
           head -50 gradlew
           
           # 检查Gradle版本
-          echo "=== 执行 gradlew --version ==="
-          ./gradlew --version
+          echo "=== 执行 gradle --version ==="
+          gradle --version
           
           # 使用--no-configuration-cache避免配置缓存问题
-          ./gradlew assembleRelease --no-daemon --warning-mode all --no-configuration-cache
+          gradle assembleRelease --no-daemon --warning-mode all --no-configuration-cache
 
       - name: Sign Release APK
         run: |
