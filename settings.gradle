@@ -1,5 +1,6 @@
 pluginManagement {
     repositories {
+        //原仓库 - 优先使用
         google {
             content {
                 includeGroupByRegex('com.android.*')
@@ -7,22 +8,22 @@ pluginManagement {
                 includeGroupByRegex('androidx.*')
             }
         }
-        //原仓库
         gradlePluginPortal()
         mavenCentral()
-        //镜像仓库,无法连接源仓库自行启用镜像仓库,不要提交修改
+        //镜像仓库 - 官方仓库无法访问时使用
         maven { url = "https://maven-central-asia.storage-download.googleapis.com/maven2/" }
-        maven { url = 'https://maven.aliyun.com/repository/google' }
-        maven { url = 'https://maven.aliyun.com/repository/public' }
-        maven { url = 'https://maven.aliyun.com/repository/gradle-plugin' }
         maven { url = 'https://repo.huaweicloud.com/repository/maven/' }
+        //暂时注释掉可能有问题的阿里云仓库
+        //maven { url = 'https://maven.aliyun.com/repository/google' }
+        //maven { url = 'https://maven.aliyun.com/repository/public' }
+        //maven { url = 'https://maven.aliyun.com/repository/gradle-plugin' }
     }
 }
 
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
     repositories {
-        //原仓库
+        //原仓库 - 优先使用
         google()
         mavenCentral()
         maven {
@@ -37,11 +38,13 @@ dependencyResolutionManagement {
         maven { url = 'https://dl.cloudsmith.io/public/louiscad/maven/' }
         maven { url = 'https://jitpack.io' }
 
-        //镜像仓库,无法连接源仓库自行启用镜像仓库,不要提交修改
+        //镜像仓库 - 官方仓库无法访问时使用
         maven { url = "https://maven-central-asia.storage-download.googleapis.com/maven2/" }
-        maven { url = 'https://maven.aliyun.com/repository/google' }
-        maven { url = 'https://maven.aliyun.com/repository/public' }
         maven { url = 'https://repo.huaweicloud.com/repository/maven/' }
+        //暂时注释掉可能有问题的阿里云仓库
+        //maven { url = 'https://maven.aliyun.com/repository/google' }
+        //maven { url = 'https://maven.aliyun.com/repository/public' }
+        //maven { url = 'https://repo.huaweicloud.com/repository/maven/' }
     }
 }
 rootProject.name = 'legado'
