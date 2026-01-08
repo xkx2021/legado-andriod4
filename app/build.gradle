@@ -41,6 +41,8 @@ android {
 
         buildConfigField "String", "Cronet_Version", "\"${project.property('CronetVersion')}\""
         buildConfigField "String", "Cronet_Main_Version", "\"${project.property('CronetMainVersion')}\""
+        // 添加Manifest合并规则，强制忽略minSdkVersion冲突
+        manifestPlaceholders.put("android.overrideLibrary", "com.google.android.renderscript")
     }
     buildFeatures {
         buildConfig = true
