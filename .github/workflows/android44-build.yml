@@ -66,8 +66,8 @@ jobs:
           yes | $SDKMANAGER --sdk_root=$ANDROID_HOME --licenses || true
           $SDKMANAGER --sdk_root=$ANDROID_HOME \
             "platform-tools" \
-            "build-tools;36.0.0" \
-            "platforms;android-36" \
+            "build-tools;30.0.3" \
+            "platforms;android-31" \
             "platforms;android-23" \
             --verbose
 
