@@ -118,7 +118,7 @@ jobs:
           KEY_ALIAS="legado"
           KEY_PASSWORD="123456"
           # Get path to apksigner
-          APKSIGNER="$ANDROID_HOME/build-tools/36.0.0/apksigner"
+          APKSIGNER="$ANDROID_HOME/build-tools/30.0.3/apksigner"
           # Find unsigned APK
           UNSIGNED_APK=$(find app/build/outputs/apk/release \
             -name "*.apk" \
