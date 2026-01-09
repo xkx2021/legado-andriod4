@@ -174,7 +174,12 @@ dependencies {
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
     implementation 'org.nanohttpd:nanohttpd-websocket:2.3.1'
 
-    implementation 'com.github.jenly1314:zxing-lite:3.3.0'
+    implementation ('com.github.jenly1314:zxing-lite:3.3.0') {
+        exclude group: 'androidx.camera', module: 'camera-video'
+        exclude group: 'androidx.camera', module: 'camera-core'
+        exclude group: 'androidx.camera', module: 'camera-camera2'
+        exclude group: 'androidx.camera', module: 'camera-lifecycle'
+    }
 
     implementation 'com.jaredrummler:colorpicker:1.1.0'
 
