@@ -179,6 +179,7 @@ dependencies {
         exclude group: 'androidx.camera', module: 'camera-core'
         exclude group: 'androidx.camera', module: 'camera-camera2'
         exclude group: 'androidx.camera', module: 'camera-lifecycle'
+        exclude group: 'androidx.camera', module: 'camera-view'
     }
 
     implementation 'com.jaredrummler:colorpicker:1.1.0'
