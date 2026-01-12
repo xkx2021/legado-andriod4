@@ -29,7 +29,8 @@ splitties = "2.12.0"
 desugar = "2.0.4"
 
 #kotlinxSerialization = "1.8.0"
-swiperefreshlayout = "1.2.0"
+# 降级到Android 4.4兼容版本（1.2.0需要minSdk 21）
+swiperefreshlayout = "1.1.0"
 collection = "1.5.0"
 
 zxingLite = "3.3.0"
