@@ -55,8 +55,8 @@ commonsText = "1.10.0"
 #noinspection GradleDependency
 rhino = "1.7.14"
 
-#noinspection GradleDependency,NewerVersionAvailable
-media3 = "1.2.0"
+# 移除 media3，改用 ExoPlayer 2.x 以支持 Android 4.4
+# media3 = "1.2.0"
 
 #noinspection GradleDependency
 webkit = "1.4.0"
@@ -111,9 +111,10 @@ lifecycle-common-java8 = { module = "androidx.lifecycle:lifecycle-common-java8",
 lifecycle-service = { module = "androidx.lifecycle:lifecycle-service", version.ref = "lifecycle" }
 
 media-media = { module = "androidx.media:media", version.ref = "media" }
-media3-datasource-okhttp = { module = "androidx.media3:media3-datasource-okhttp", version.ref = "media3" }
-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
-media3-session = { module = "androidx.media3:media3-session", version.ref = "media3" }
+# 移除 media3 libraries，改用 ExoPlayer 2.x
+# media3-datasource-okhttp = { module = "androidx.media3:media3-datasource-okhttp", version.ref = "media3" }
+# media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3" }
+# media3-session = { module = "androidx.media3:media3-session", version.ref = "media3" }
 
 markwon-core = { module = "io.noties.markwon:core", version.ref = "markwon" }
 markwon-image-glide = { module = "io.noties.markwon:image-glide", version.ref = "markwon" }
