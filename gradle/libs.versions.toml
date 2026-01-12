@@ -61,8 +61,9 @@ media3 = "1.2.0"
 webkit = "1.4.0"
 #noinspection GradleDependency
 activity = "1.5.1"
+# 降级到Android 4.4兼容版本 (2.6.2需要compileSdk 33+)
 #noinspection GradleDependency
-lifecycle = "2.6.2"
+lifecycle = "2.5.1"
 #noinspection GradleDependency
 room = "2.4.3"
 #noinspection GradleDependency
