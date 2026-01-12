@@ -108,18 +108,11 @@ android {
 }
 
 dependencies {
-    // 强制使用兼容Android 4.4的依赖版本
-    constraints {
-        implementation('androidx.core:core') {
-            because 'androidx.core:1.16.0 requires minSdk 21'
-            version {
-                strictly '[1.6.0,1.9.0['
-            }
-        }
-        implementation('androidx.core:core-ktx') {
-            version {
-                strictly '[1.6.0,1.9.0['
-            }
+    // 使用resolutionStrategy强制使用兼容Android 4.4的依赖版本
+    configurations.all {
+        resolutionStrategy {
+            force 'androidx.core:core:1.6.0'
+            force 'androidx.core:core-ktx:1.6.0'
         }
     }
     
