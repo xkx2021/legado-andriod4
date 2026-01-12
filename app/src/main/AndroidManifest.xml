@@ -6,7 +6,7 @@
     <uses-sdk
         android:minSdkVersion="19"
         android:targetSdkVersion="31"
-        tools:overrideLibrary="com.google.android.renderscript,com.king.zxing,com.king.camera.scan,com.king.view.viewfinderview,com.google.android.exoplayer2.ext.okhttp,com.king.logx" />
+        tools:overrideLibrary="com.google.android.renderscript,com.king.zxing,com.king.camera.scan,com.king.view.viewfinderview,com.google.android.exoplayer2.ext.okhttp,com.king.logx,me.zhanghai.android.libarchive" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
