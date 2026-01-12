@@ -67,6 +67,7 @@ jobs:
           $SDKMANAGER --sdk_root=$ANDROID_HOME \
             "platform-tools" \
             "build-tools;30.0.2" \
+            "platforms;android-36" \
             "platforms;android-31" \
             "platforms;android-23" \
             --verbose
