@@ -141,8 +141,6 @@ dependencies {
     implementation 'androidx.webkit:webkit:1.4.0'
 
     implementation 'com.google.android.material:material:1.5.0'
-    // Replace flexbox with ConstraintLayout which is more widely available
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.code.gson:gson:2.13.2'
 
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.5.1'
